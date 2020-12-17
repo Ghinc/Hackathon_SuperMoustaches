@@ -28,26 +28,26 @@ mycursor = mydb.cursor()
 #cette fonction obtient le prix actuel du produit choisi,
 #et si il a changé, elle ajoute le changement a historique_prix
 
-def get_prix(id_product):
+def get_prix(reference):
     
-    sql=("SELECT price FROM produits WHERE id_product=(%s)")
-    val=(id_product,)
-    if not id_product in prix_produits.keys():
-        prix_produits[id_product]=[]
+    sql=("SELECT price FROM produits WHERE reference=(%s)")
+    val=(reference,)
+    if not reference in prix_produits.keys():
+        prix_produits[reference]=[]
     mycursor.execute(sql,val)
     result = mycursor.fetchall()
     sortie=[]
     for row in result:
         sortie.append(float(row[0]))
-    if sortie[0] not in prix_produits[id_product]:
-        prix_produits[id_product].append([sortie[0], datetime.now()])
+    if sortie[0] not in prix_produits[reference]:
+        prix_produits[reference].append([sortie[0], datetime.now()])
     return(sortie)
 
 
 
-def maj_prix_db(id_product, new_price):
-    sql=("UPDATE produits SET price=(%s) WHERE id_product=(%s)")
-    val=(new_price, id_product)
+def maj_prix_db(reference, new_price):
+    sql=("UPDATE produits SET price=(%s) WHERE reference=(%s)")
+    val=(new_price, reference)
     mycursor.execute(sql,val)
     
     mydb.commit()
