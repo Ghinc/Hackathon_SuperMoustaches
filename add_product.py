@@ -19,10 +19,10 @@ mycursor = mydb.cursor()
 
 
 
-def insert_db(id_product_google,price,id_product):
-    sql=("INSERT INTO produits.produits (id_product_google, price, id_product)"
-    " VALUES (%s,%s,%s)")
-    val=(id_product_google, price, id_product)
+def insert_db(id_product_google,price,id_product, reference):
+    sql=("INSERT INTO produits.produits (id_product_google, price, id_product, reference)"
+    " VALUES (%s,%s,%s, %s)")
+    val=(id_product_google, price, id_product, reference)
     mycursor.execute(sql,val)
     
     mydb.commit()
