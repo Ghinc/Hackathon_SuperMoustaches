@@ -29,6 +29,18 @@ def all_produits():
         ]
         if produits is not None:
             return jsonify(produits)
+          
+  @app.route("/add_produit/<reference>/<id_product_google>/<id_product>/ <price>", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def add_product(reference,id_product_google,id_product,price):
+    
+    if request.method == "GET":
+        sql=("INSERT INTO produits.produits (id_product_google, id_product, reference, price)"
+             "VALUES (%s, %s, %s, %s)")
+        var=(id_product_google, id_product, reference, price)
+        mycursor.execute(sql,var)
+        mydb.commit()
+        return "objet inséré",201
     
     
 @app.route("/produit/<reference>", methods=["GET", "DELETE"])
