@@ -3,7 +3,7 @@
 <?php
 
 try{
-	$connect=new PDO("mysql:host=mysql.hostinger.fr;dbname=u604012333_lboun;charset=utf8","u604012333_lboun","56umQEklxoA8MUg5E1");
+	$connect=new PDO("mysql:host=localhost;dbname=pro;charset=utf8","root","");
 
 
 	$id_product	= isset($_GET['id_product']) ? $_GET['id_product']:null;
